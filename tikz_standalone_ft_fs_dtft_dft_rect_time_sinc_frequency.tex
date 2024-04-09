@@ -526,17 +526,41 @@
 		%
 		% arrow from FS to DTFT
 		%
-		\draw[-latex, ultra thick] (1/2*\paperwidth,1/2*\paperheight) -- node[above,rotate=\ANGLE,color=\TCOLOR,xshift=-1/80*\paperwidth] {\FONTSIZE \rotatebox{+90}{$\curvearrowleft$} Aperiodisation + Sampling}
-		node[below,rotate=\ANGLE,color=\FCOLOR,xshift=-1/80*\paperwidth] {\FONTSIZE \rotatebox{+90}{$\curvearrowleft$} Interpolation + Periodisation} (7.75/20*\paperwidth,7.75/20*\paperheight);
-		\draw[thick] (1/2*\paperwidth,1/2*\paperheight) -- node[above,rotate=-\ANGLE,color=\TCOLOR,xshift=-1/80*\paperwidth] {\FONTSIZE \rotatebox{+90}{$\curvearrowright$} Periodisation + Sampling}
-		node[below,rotate=-\ANGLE,color=\FCOLOR,xshift=-1/80*\paperwidth] {\FONTSIZE  \rotatebox{+90}{$\curvearrowright$} Sampling + Periodisation} (7.75/20*\paperwidth,12.25/20*\paperheight);
+		\draw[-latex, ultra thick] (1/2*\paperwidth,1/2*\paperheight) -- node[above,rotate=\ANGLE,color=\TCOLOR,xshift=-1/80*\paperwidth,anchor=south] {\FONTSIZE Aperiodisation + Sampling}
+		node[below,rotate=\ANGLE,color=\FCOLOR,xshift=-1/80*\paperwidth,anchor=north] {\FONTSIZE Interpolation + Periodisation} (7.75/20*\paperwidth,7.75/20*\paperheight) coordinate (A);
+		
+		\coordinate[above left=0.75cm*cos(\ANGLE) and 0.75cm*sin(\ANGLE) of A] (B);
+		\coordinate[below right=0.75cm*cos(\ANGLE) and 0.75cm*sin(\ANGLE) of A] (C);
+		
+		\path[-latex] (B) edge [bend right=90,looseness=2] (C);
+		
+		\draw[thick] (1/2*\paperwidth,1/2*\paperheight) -- node[above,rotate=-\ANGLE,color=\TCOLOR,xshift=-1/80*\paperwidth,anchor=south] {\FONTSIZE Periodisation + Sampling}
+		node[below,rotate=-\ANGLE,color=\FCOLOR,xshift=-1/80*\paperwidth,anchor=north] {\FONTSIZE Sampling + Periodisation} (7.75/20*\paperwidth,12.25/20*\paperheight) coordinate (A);
+		
+		\coordinate[below left=0.75cm*cos(\ANGLE) and 0.75cm*sin(\ANGLE) of A] (B);
+		\coordinate[above right=0.75cm*cos(\ANGLE) and 0.75cm*sin(\ANGLE) of A] (C);
+		%
+		\path[-latex] (B) edge [bend left=90,looseness=2] (C);
 		%
 		% arrow from FT to DFT
 		%
-		\draw[-latex, ultra thick] (1/2*\paperwidth,1/2*\paperheight) -- node[above,rotate=-\ANGLE,color=\TCOLOR,xshift=1/80*\paperwidth] {\FONTSIZE Sampling + Periodisation \rotatebox{-90}{$\curvearrowleft$}}
-		node[below,rotate=-\ANGLE,color=\FCOLOR,xshift=1/80*\paperwidth] {\FONTSIZE Periodisation + Sampling \rotatebox{-90}{$\curvearrowleft$}} (12.25/20*\paperwidth,7.75/20*\paperheight);
-		\draw[thick] (1/2*\paperwidth,1/2*\paperheight) -- node[above,rotate=\ANGLE,color=\TCOLOR,xshift=1/80*\paperwidth] {\FONTSIZE Sampling + Aperiodisation \rotatebox{-90}{$\curvearrowright$}}
-		node[below,rotate=\ANGLE,color=\FCOLOR,xshift=1/80*\paperwidth] {\FONTSIZE Periodisation + Interpolation \rotatebox{-90}{$\curvearrowright$}} (12.25/20*\paperwidth,12.25/20*\paperheight);
+		\draw[-latex, ultra thick] (1/2*\paperwidth,1/2*\paperheight) -- node[above,rotate=-\ANGLE,color=\TCOLOR,xshift=1/80*\paperwidth] {\FONTSIZE Sampling + Periodisation}
+		node[below,rotate=-\ANGLE,color=\FCOLOR,xshift=1/80*\paperwidth] {\FONTSIZE Periodisation + Sampling} (12.25/20*\paperwidth,7.75/20*\paperheight) coordinate (A);
+		
+		\coordinate[below left=0.75cm*cos(\ANGLE) and 0.75cm*sin(\ANGLE) of A] (B);
+		\coordinate[above right=0.75cm*cos(\ANGLE) and 0.75cm*sin(\ANGLE) of A] (C);
+		%
+		\path[-latex] (B) edge [bend right=90,looseness=2] (C);
+		%
+		%
+		%
+		\draw[thick] (1/2*\paperwidth,1/2*\paperheight) -- node[above,rotate=\ANGLE,color=\TCOLOR,xshift=1/80*\paperwidth] {\FONTSIZE Sampling + Aperiodisation}
+		node[below,rotate=\ANGLE,color=\FCOLOR,xshift=1/80*\paperwidth] {\FONTSIZE Periodisation + Interpolation} (12.25/20*\paperwidth,12.25/20*\paperheight) coordinate (A);
+		
+		\coordinate[above left=0.75cm*cos(\ANGLE) and 0.75cm*sin(\ANGLE) of A] (B);
+		\coordinate[below right=0.75cm*cos(\ANGLE) and 0.75cm*sin(\ANGLE) of A] (C);
+		%
+		\path[-latex] (B) edge [bend left=90,looseness=2] (C);
 		%
 		\begin{comment}
 		\end{comment}
